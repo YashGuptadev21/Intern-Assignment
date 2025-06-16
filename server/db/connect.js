@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 
 const dbConnection = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://yashguptadev21:Yash21091@cluster0.qxlzg.mongodb.net/",
+    await mongoose.connect(process.env.DB_URL,
       {
         dbName: "Assignment",
       }
