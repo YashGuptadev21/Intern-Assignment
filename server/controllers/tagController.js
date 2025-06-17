@@ -21,8 +21,8 @@ const createTag = async (req, res) => {
 
 const getTagsByState = async (req, res) => {
     try {
-    const { stateCode } = req.params;
-    const tags = await Tag.find({ state_code: stateCode }).sort({ upvotes: -1 });
+    const { state_code } = req.params;
+    const tags = await Tag.find({ state_code }).sort({ upvotes: -1 });
     res.json(tags);
   } catch (err) {
     res.status(500).json({ error: err.message });
