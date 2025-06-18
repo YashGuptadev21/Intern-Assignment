@@ -14,6 +14,10 @@ app.use(express.json());
 app.use("/api/data/gsdp", gsdpRoutes);
 app.use("/api/tags", tagRoutes);
 dbConnection();
+
+app.get("/", (req, res) => {
+  res.send("Server is working");
+});
 app.listen(PORT, () => {
-  console.log(`Server is running on localhost ${PORT}`)
+  console.log(`Server is running on localhost ${PORT}`);
 });
