@@ -14,7 +14,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className="main-container">
       <h1>India GSDP Map</h1>
 
       <select
@@ -40,7 +40,7 @@ function App() {
           stateName={selectedState.name}
           stateCode={selectedState.code}
           selectedYear={selectedYear}
-          />
+        />
       )}
     </div>
   );

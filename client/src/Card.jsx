@@ -71,13 +71,13 @@ const StateCard = ({ stateName, stateCode, selectedYear }) => {
 
   return (
     <div
-      className="state-card"
-      style={{
-        border: "1px solid #ccc",
-        padding: "1rem",
-        marginTop: "1rem",
-        borderRadius: "8px",
-      }}
+      className="info-card"
+      // style={{
+      //   border: "1px solid #ccc",
+      //   padding: "1rem",
+      //   marginTop: "1rem",
+      //   borderRadius: "8px",
+      // }}
     >
       <h2>
         {stateName} — {selectedYear}

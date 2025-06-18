@@ -61,47 +61,49 @@ const MapComponent = ({ selectedYear, onStateClick }) => {
   }, [selectedYear]);
 
   return (
-    <ComposableMap
-      projection="geoMercator"
-      projectionConfig={{ scale: 1000, center: [80, 22] }}
-    >
-      <Geographies geography={geoUrl}>
-        {({ geographies }) => (
-          <>
-            {geographies.map((geo) => (
-              <Geography
-                key={geo.rsmKey}
-                geography={geo}
-                fill="#6baed6"
-                onClick={() => {
-                  const name = geo.properties.NAME_1;
-                  const code = stateCodeMap[name];
-                  onStateClick(name, code);
-                }}
-                style={{
-                  default: { outline: "none" },
-                  hover: { fill: "#f537", outline: "none" },
-                  pressed: { outline: "none" },
-                }}
-              />
-            ))}
+    <div className="map-container">
+      <ComposableMap
+        projection="geoMercator"
+        projectionConfig={{ scale: 1000, center: [80, 22] }}
+      >
+        <Geographies geography={geoUrl}>
+          {({ geographies }) => (
+            <>
+              {geographies.map((geo) => (
+                <Geography
+                  key={geo.rsmKey}
+                  geography={geo}
+                  fill="#6baed6"
+                  onClick={() => {
+                    const name = geo.properties.NAME_1;
+                    const code = stateCodeMap[name];
+                    onStateClick(name, code);
+                  }}
+                  style={{
+                    default: { outline: "none" },
+                    hover: { fill: "#f537", outline: "none" },
+                    pressed: { outline: "none" },
+                  }}
+                />
+              ))}
 
-            {/* State Names on the map*/}
-            {geographies.map((geo) => {
-              const centroid = geoCentroid(geo);
-              const name = geo.properties.NAME_1;
-              return (
-                <Marker key={geo.rsmKey} coordinates={centroid}>
-                  <text textAnchor="middle" fontSize={8} fill="#000">
-                    {name}
-                  </text>
-                </Marker>
-              );
-            })}
-          </>
-        )}
-      </Geographies>
-    </ComposableMap>
+              {/* State Names on the map*/}
+              {geographies.map((geo) => {
+                const centroid = geoCentroid(geo);
+                const name = geo.properties.NAME_1;
+                return (
+                  <Marker key={geo.rsmKey} coordinates={centroid}>
+                    <text textAnchor="middle" fontSize={8} fill="#000">
+                      {name}
+                    </text>
+                  </Marker>
+                );
+              })}
+            </>
+          )}
+        </Geographies>
+      </ComposableMap>
+    </div>
   );
 };
 
