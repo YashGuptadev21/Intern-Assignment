@@ -5,7 +5,7 @@ const getDataByYear = async (req, res) => {
   const year = req.params.year;
   const csvFilePath = path.join(__dirname, "../data/gsdpData.csv");
 
-  // Binding the Cloumn Names
+  // Binding all the Cloumn Names from csv data
   const gsdpCurrentPricesColumn = `Gross State Domestic Product (GSDP)at Current Prices - ${year}`;
   const growthCurrentPercenatgeColumn = `Percentage Growth over Previous year at Current Prices - ${year}`;
   const gsdpConstantPricesColumn = `Gross State Domestic Product (GSDP)at Constant Prices - ${year}`;
@@ -18,7 +18,7 @@ const getDataByYear = async (req, res) => {
       return res.status(404).json({ error: "No data found in CSV." });
     }
 
-    // Mapping all the data in the Json Format
+    // Mapping all the data from the csv in the Json Format
     const response = data
       .map((record) => ({
         state: record["State/UT"],

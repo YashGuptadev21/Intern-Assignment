@@ -15,7 +15,7 @@ const StateCard = ({ stateName, stateCode, selectedYear }) => {
     }
   }, [stateCode]);
 
-  // Fetch GSDP data by year
+  // Fetching GSDP data by year and returning it in the card
   useEffect(() => {
     if (selectedYear) {
       fetch(`http://localhost:3000/api/data/gsdp/${selectedYear}`)
@@ -28,7 +28,7 @@ const StateCard = ({ stateName, stateCode, selectedYear }) => {
     }
   }, [stateName, selectedYear]);
 
-  // Add new tag
+  // Posting a new tag
   const handleAddTag = async (e) => {
     e.preventDefault();
     if (!newTag.trim()) return;
@@ -50,7 +50,7 @@ const StateCard = ({ stateName, stateCode, selectedYear }) => {
     }
   };
 
-  // Upvote tag
+  // Upvoting tag
   const handleUpvote = async (tagId) => {
     try {
       const res = await fetch(
@@ -83,7 +83,7 @@ const StateCard = ({ stateName, stateCode, selectedYear }) => {
         {stateName} — {selectedYear}
       </h2>
 
-      {/* GSDP Data Section */}
+      {/* GSDP Data Section in the card */}
       {gsdpData ? (
         <div style={{ marginBottom: "1rem" }}>
           <h4>GSDP Data:</h4>
@@ -108,7 +108,7 @@ const StateCard = ({ stateName, stateCode, selectedYear }) => {
         <p>Loading GSDP data...</p>
       )}
 
-      {/* Add Tag Form */}
+      {/* Add Tag form in the card*/}
       <form onSubmit={handleAddTag} style={{ marginBottom: "1rem" }}>
         <input
           type="text"
