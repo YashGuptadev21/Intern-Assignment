@@ -15,5 +15,5 @@ app.use("/api/data/gsdp", gsdpRoutes);
 app.use("/api/tags", tagRoutes);
 dbConnection();
 app.listen(PORT, () => {
-  console.log(`Server is running on localhost ${PORT}`);
+  console.log(`Server is running on localhost ${PORT}`)
 });
