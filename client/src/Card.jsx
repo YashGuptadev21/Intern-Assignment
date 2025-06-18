@@ -8,7 +8,7 @@ const StateCard = ({ stateName, stateCode, selectedYear }) => {
   // Fetch tags on state change
   useEffect(() => {
     if (stateCode) {
-      fetch(`http://localhost:3000/api/tags/${stateCode}`)
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/tags/${stateCode}`)
         .then((res) => res.json())
         .then((data) => setTags(data))
         .catch((err) => console.error(err));
@@ -18,7 +18,7 @@ const StateCard = ({ stateName, stateCode, selectedYear }) => {
   // Fetching GSDP data by year and returning it in the card
   useEffect(() => {
     if (selectedYear) {
-      fetch(`http://localhost:3000/api/data/gsdp/${selectedYear}`)
+      fetch(`${import.meta.env.VITE_BACKEND_URL}/api/data/gsdp/${selectedYear}`)
         .then((res) => res.json())
         .then((data) => {
           const found = data.find((entry) => entry.state === stateName);
@@ -34,7 +34,7 @@ const StateCard = ({ stateName, stateCode, selectedYear }) => {
     if (!newTag.trim()) return;
 
     try {
-      const res = await fetch("http://localhost:3000/api/tags", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/tags`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ state_code: stateCode, tag_name: newTag }),
@@ -54,7 +54,7 @@ const StateCard = ({ stateName, stateCode, selectedYear }) => {
   const handleUpvote = async (tagId) => {
     try {
       const res = await fetch(
-        `http://localhost:3000/api/tags/upvote/${tagId}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/tags/upvote/${tagId}`,
         {
           method: "PUT",
         }
@@ -70,15 +70,7 @@ const StateCard = ({ stateName, stateCode, selectedYear }) => {
   };
 
   return (
-    <div
-      className="info-card"
-      // style={{
-      //   border: "1px solid #ccc",
-      //   padding: "1rem",
-      //   marginTop: "1rem",
-      //   borderRadius: "8px",
-      // }}
-    >
+    <div className="info-card">
       <h2>
         {stateName} — {selectedYear}
       </h2>

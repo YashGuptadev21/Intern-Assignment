@@ -54,7 +54,7 @@ const MapComponent = ({ selectedYear, onStateClick }) => {
   const [gsdpData, setGsdpData] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/data/gsdp/${selectedYear}`)
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/api/data/gsdp/${selectedYear}`)
       .then((res) => res.json())
       .then((data) => setGsdpData(data))
       .catch((err) => console.error(err));
